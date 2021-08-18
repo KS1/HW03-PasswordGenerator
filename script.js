@@ -3,31 +3,17 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  // debugging code
-  // console.log("Hello, I am in writePassword function.");
-  // console.log("--------------------------------------");
-
-  var password = generatePassword();
-  
+  var password = generatePassword();  
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
-  // debugging code
-  // console.log("Password text: " + passwordText.value)
-  // console.log("writePassword function completed.");
-  // console.log("--------------------------------------");
-  
   return;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// Added function code to generate password
 function generatePassword() { 
-  // debugging code
-  // console.log("Hello, I am in generatePassword function.");
-  // console.log("-----------------------------------------");
-  
   // set default password length
   var passwordLength = 12;
 
@@ -58,9 +44,7 @@ function generatePassword() {
     // get character types from the user
     var characterTypes = getCharacterTypes();
 
-    // debugging code
-    // console.log("In generatePassword function." + "characterTypes: " + characterTypes + "  passwordLength: " + passwordLength);
-
+    // check if characterTypes is not empty
     if(characterTypes != "") { 
       // Building characters string based on user input for character type
       chars = "";
@@ -75,34 +59,19 @@ function generatePassword() {
         chars = chars + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
   }
-
-  // debugging code
-  // console.log("In generatePassword function." + "chars: " + chars + "   passwordLength: " + passwordLength);
   
   // Algorithm Reference: https://dev.to/code_mystery/random-password-generator-using-javascript-6a
-
   var password = "";
-
   for (var i = 0; i <= passwordLength; i++) {
     var randomNumber = Math.floor(Math.random() * chars.length);    
     password += chars.substring(randomNumber, randomNumber +1);
-    // debugging code
-    // console.log("In generatePassword function - For Loop." + " i -" + i + " randomNumber: " + randomNumber + " password: " + password);
    }
-
-  // debugging code
-  // console.log("In generatePassword function. " + "Generated password: " + password)
-  // console.log("generatePassword function completed.");
-  // console.log("-------------------------------------------------------------");
 
   return password;
 }
 
 // Added getPasswordLength function to get the length of the password
 function getPasswordLength() { 
-  // debugging code
-  // console.log("Hello, I am in getPasswordLength function.");
-  // console.log("------------------------------------------");
 
    // Limit a length of at least 8 characters and no more than 128 characters
    var passwordLength = window.prompt("Enter password length (min 8 and max 128): ");
@@ -114,20 +83,11 @@ function getPasswordLength() {
      else { passwordLength = 0; }  
    }
 
-   // debugging code
-   // console.log("Inside function getPasswordLength. " + passwordLength);
-   // console.log("getPasswordLength function completed.");
-   // console.log("-------------------------------------");
-
    return passwordLength;
 }
 
 // Added getCharacterTypes function to get character types
 function getCharacterTypes() {
-
-    // debugging code
-    // console.log("Hello, I am in getCharacterTypes function.");
-    // console.log("------------------------------------------");
 
     // lowercase, uppercase, numeric, and/or special characters   
     var characterTypes = window.prompt("Enter each character type to include: \
@@ -145,10 +105,6 @@ function getCharacterTypes() {
         characterTypes = getCharacterTypes();
       } else {characterTypes = "";}
     }
-
-    // debugging code
-    // console.log("getCharacterTypes function completed.");
-    // console.log("--------------------------------------");
 
     return characterTypes;  
 }
